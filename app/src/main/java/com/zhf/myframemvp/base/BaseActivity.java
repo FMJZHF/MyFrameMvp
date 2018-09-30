@@ -22,6 +22,9 @@ import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.zhf.myframemvp.R;
+import com.zhf.myframemvp.di.component.ActivityComponent;
+import com.zhf.myframemvp.di.component.DaggerActivityComponent;
+import com.zhf.myframemvp.di.module.ActivityModule;
 import com.zhf.myframemvp.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -79,6 +82,16 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
         setOnClick(R.id.tv_back_base_activity);
 
   }
+
+
+    protected ActivityComponent getActivityComponent() {
+        return DaggerActivityComponent.builder()
+                .appComponent(MyApplication.getAppComponent())
+                .activityModule(new ActivityModule())
+                .build();
+    }
+
+
 
     /**
      * 设置点击事件.

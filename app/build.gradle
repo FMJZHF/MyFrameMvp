@@ -29,8 +29,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // 引入 内存检测工具 便于优化项目
-//    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
-//    implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     debugImplementation  'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation  'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
 
