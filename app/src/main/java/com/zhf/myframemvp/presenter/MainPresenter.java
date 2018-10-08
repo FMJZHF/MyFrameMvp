@@ -1,5 +1,7 @@
 package com.zhf.myframemvp.presenter;
 
+import android.os.Handler;
+
 import com.zhf.myframemvp.base.BaseMvpPresenter;
 import com.zhf.myframemvp.base.MyApplication;
 import com.zhf.myframemvp.contract.MainContract;
@@ -29,23 +31,28 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.IView>
         dataHelper = MyApplication.getAppComponent().getDataHelper();
     }
 
+    private Handler handler = new Handler();
+
     @Override
     public void loadData() {
-//        addSubscribe(dataHelper.loginCode("134xxxxxxxx")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe());
-
         addSubscribe(dataHelper.loginCode("134xxxxxxxx")
                 .compose(MyRxUtils.toMain(Schedulers.io()))
                 .subscribeWith(new MySubscriber<HttpNoResult>(baseView, true) {
                     @Override
                     public void onNext(HttpNoResult httpNoResult) {
+                        baseView.hideLoading();
+                        baseView.showTipMsg("加载数据  完成");
 
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        super.onError(t);
+                        baseView.showTipMsg("加载数据  ERROR");
                     }
                 }));
 
 
 //        baseView.showTipMsg("加载数据");
-    }
+}
 }

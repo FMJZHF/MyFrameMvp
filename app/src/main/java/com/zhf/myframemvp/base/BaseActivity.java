@@ -55,14 +55,12 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
     private TextView tvBack;
 
 
-
     private AlertDialog loadingDialog;
 
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         activities.add(this);
         //强制竖屏(不强制加)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -81,7 +79,7 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
         initData();
         setOnClick(R.id.tv_back_base_activity);
 
-  }
+    }
 
 
     protected ActivityComponent getActivityComponent() {
@@ -90,7 +88,6 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
                 .activityModule(new ActivityModule())
                 .build();
     }
-
 
 
     /**
@@ -122,6 +119,7 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
         }
         return this;
     }
+
     /**
      * 获取当前布局对象
      *
@@ -132,16 +130,12 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
     protected abstract int getLayoutId(Bundle savedInstanceState);
 
 
-    public BaseActivity setTitles(CharSequence title) {
-        tvToolbarTitle.setText(title);
-        return this;
-    }
-
     /**
      * 初始化toolbar的内容
+     *
      * @param isShowToolbar 是否显示toolbar
-     * @param isShowBack 是否显示左边的TextView
-     * @param isShowMore 是否显示右边的TextView
+     * @param isShowBack    是否显示左边的TextView
+     * @param isShowMore    是否显示右边的TextView
      * @return 当前activity对象，可以连点
      */
     protected BaseActivity initToolbar(boolean isShowToolbar, boolean isShowBack,
@@ -169,22 +163,28 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
         return this;
     }
 
-    @SuppressWarnings("unused")
-    public BaseActivity setMyTitle(String title) {
+    public BaseActivity setMainTitle(CharSequence title) {
         tvToolbarTitle.setText(title);
         return this;
     }
 
-    public BaseActivity setMyTitle(@StringRes int stringId) {
+    @SuppressWarnings("unused")
+    public BaseActivity setMainTitle(String title) {
+        tvToolbarTitle.setText(title);
+        return this;
+    }
+
+    public BaseActivity setMainTitle(@StringRes int stringId) {
         tvToolbarTitle.setText(stringId);
         return this;
     }
 
-    public void setMoreTitle(String moreTitle) {
-        tvToolbarRight.setText(moreTitle);
+    public BaseActivity setRightTitle(String rightTitle) {
+        tvToolbarRight.setText(rightTitle);
+        return this;
     }
 
-    public BaseActivity setMoreTitle(@StringRes int stringId) {
+    public BaseActivity setRightTitle(@StringRes int stringId) {
         tvToolbarRight.setText(stringId);
         return this;
     }
