@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zhf.myframemvp">
 
-
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".base.MyApplication"
@@ -23,7 +22,8 @@
         </activity>
 
 
-        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".base.BaseActivity"/>
+        <activity android:name=".base.BaseMvpActivity"/>
 
 
 

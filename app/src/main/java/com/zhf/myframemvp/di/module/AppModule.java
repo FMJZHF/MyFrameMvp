@@ -1,8 +1,14 @@
 package com.zhf.myframemvp.di.module;
 
 import com.zhf.myframemvp.base.MyApplication;
+import com.zhf.myframemvp.model.DataHelper;
+import com.zhf.myframemvp.model.http.HttpHelper;
+import com.zhf.myframemvp.model.http.RetrofitHelper;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * ${DESC}
@@ -17,4 +23,17 @@ public class AppModule {
     public AppModule(MyApplication application) {
         this.application = application;
     }
+
+    @Provides
+    @Singleton
+    DataHelper provideDataHelper(HttpHelper httpHelper) {
+        return new DataHelper(httpHelper);
+    }
+
+    @Provides
+    @Singleton
+    HttpHelper provideHttpHelper(RetrofitHelper retrofitHelper) {
+        return retrofitHelper;
+    }
+
 }

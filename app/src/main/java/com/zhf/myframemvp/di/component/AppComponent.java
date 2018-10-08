@@ -2,6 +2,7 @@ package com.zhf.myframemvp.di.component;
 
 import com.zhf.myframemvp.di.module.AppModule;
 import com.zhf.myframemvp.di.module.HttpModule;
+import com.zhf.myframemvp.model.DataHelper;
 
 import javax.inject.Singleton;
 
@@ -16,4 +17,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, HttpModule.class})
 public interface AppComponent {
+    DataHelper getDataHelper();
 }
